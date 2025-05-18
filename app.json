@@ -3,28 +3,65 @@
     "name": "AgriConnect",
     "slug": "AgriConnect",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "agriconnect",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.agriconnect.app",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "UIBackgroundModes": ["remote-notification"],
+        "NSCameraUsageDescription": "Cette application utilise la caméra pour prendre des photos de vos cultures et animaux.",
+        "NSPhotoLibraryUsageDescription": "Cette application accède à votre galerie pour sélectionner des photos de vos cultures et animaux.",
+        "NSLocationWhenInUseUsageDescription": "Cette application utilise votre localisation pour vous fournir des informations météorologiques et des alertes locales.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Cette application utilise votre localisation pour vous fournir des informations météorologiques et des alertes locales."
+      },
+      "minIosVersion": "12.0"
     },
     "android": {
+      "package": "com.agriconnect.app",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE"
+      ],
+      "minSdkVersion": 23
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "name": "AgriConnect - Votre compagnon agricole intelligent",
+      "shortName": "AgriConnect",
+      "description": "AgriConnect est une application mobile conçue pour les agriculteurs, les éleveurs, les professionnels agricoles, les fournisseurs et les acheteurs.",
+      "lang": "fr",
+      "themeColor": "#2E7D32",
+      "backgroundColor": "#ffffff",
+      "startUrl": "/",
+      "display": "standalone",
+      "orientation": "portrait",
+      "splash": {
+        "image": "./assets/images/splash-icon.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      }
     },
     "plugins": [
       "expo-router",
+      "expo-localization",
       [
         "expo-splash-screen",
         {
@@ -33,10 +70,26 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/notification-icon.png",
+          "color": "#0a7ea4",
+          "sounds": [
+            "./assets/sounds/notification.wav"
+          ]
+        }
+      ],
+      "expo-location"
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "permissions": [
+      "NOTIFICATIONS",
+      "ACCESS_FINE_LOCATION",
+      "ACCESS_COARSE_LOCATION"
+    ]
   }
 }

@@ -1,29 +1,232 @@
-// Fallback for using MaterialIcons on Android and web.
+// Composant d'icône qui utilise Material Icons sur toutes les plateformes
+// Avec une interface compatible avec les noms SF Symbols pour la cohérence
 
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { SymbolWeight, SymbolViewProps } from 'expo-symbols';
 import { ComponentProps } from 'react';
 import { OpaqueColorValue, type StyleProp, type TextStyle } from 'react-native';
 
-type IconMapping = Record<SymbolViewProps['name'], ComponentProps<typeof MaterialIcons>['name']>;
+type IconMapping = Record<string, ComponentProps<typeof MaterialIcons>['name']>;
 type IconSymbolName = keyof typeof MAPPING;
 
 /**
- * Add your SF Symbols to Material Icons mappings here.
- * - see Material Icons in the [Icons Directory](https://icons.expo.fyi).
- * - see SF Symbols in the [SF Symbols](https://developer.apple.com/sf-symbols/) app.
+ * Correspondance entre les icônes SF Symbols et Material Icons
+ * - Voir Material Icons dans [Icons Directory](https://icons.expo.fyi)
+ * - Voir SF Symbols dans l'application [SF Symbols](https://developer.apple.com/sf-symbols/)
  */
 const MAPPING = {
+  // Navigation et interface
+  'house': 'home',
   'house.fill': 'home',
-  'paperplane.fill': 'send',
-  'chevron.left.forwardslash.chevron.right': 'code',
+  'magnifyingglass': 'search',
+  'gear': 'settings',
+  'person.circle': 'account-circle',
+  'person': 'person',
+  'person.fill': 'person',
+  'bell': 'notifications',
+  'bell.fill': 'notifications',
+  'envelope': 'email',
+  'envelope.fill': 'email',
+  'cart': 'shopping-cart',
+  'cart.fill': 'shopping-cart',
+  'heart': 'favorite-border',
+  'heart.fill': 'favorite',
+  'star': 'star-border',
+  'star.fill': 'star',
+  'bookmark': 'bookmark-border',
+  'bookmark.fill': 'bookmark',
+  'trash': 'delete',
+  'trash.fill': 'delete',
+  'plus': 'add',
+  'minus': 'remove',
+  'xmark': 'close',
+  'checkmark': 'check',
+  'info.circle': 'info',
+  'exclamationmark.triangle': 'warning',
+  'questionmark.circle': 'help',
+  'arrow.left': 'arrow-back',
+  'arrow.right': 'arrow-forward',
+  'arrow.up': 'arrow-upward',
+  'arrow.down': 'arrow-downward',
+  'chevron.left': 'chevron-left',
   'chevron.right': 'chevron-right',
+  'chevron.up': 'expand-less',
+  'chevron.down': 'expand-more',
+  'line.3.horizontal': 'menu',
+  'square.and.arrow.up': 'share',
+  'square.and.pencil': 'edit',
+  'ellipsis': 'more-horiz',
+  'ellipsis.circle': 'more-vert',
+
+  // Agriculture et nature
+  'leaf': 'eco',
+  'leaf.fill': 'eco',
+  'person.2': 'people',
+  'person.2.fill': 'people',
+  'person.badge.plus': 'person-add',
+  'drop': 'water-drop',
+  'drop.fill': 'water-drop',
+  'sun.max': 'wb-sunny',
+  'sun.max.fill': 'wb-sunny',
+  'cloud': 'cloud',
+  'cloud.fill': 'cloud',
+  'cloud.rain': 'grain',
+  'cloud.rain.fill': 'grain',
+  'cloud.bolt': 'flash-on',
+  'cloud.bolt.fill': 'flash-on',
+  'cloud.sun.fill': 'wb-cloudy',
+  'wind': 'air',
+  'thermometer': 'device-thermostat',
+  'thermometer.sun': 'wb-sunny',
+  'calendar': 'calendar-today',
+  'calendar.badge.plus': 'event',
+  'clock': 'access-time',
+  'clock.fill': 'access-time-filled',
+  'location': 'location-on',
+  'location.fill': 'location-on',
+  'map': 'map',
+  'map.fill': 'map',
+  'scissors': 'content-cut',
+  'hammer': 'handyman',
+  'wrench': 'build',
+  'wrench.fill': 'build',
+  'ruler': 'straighten',
+  'eyedropper': 'colorize',
+  'tag': 'local-offer',
+  'tag.fill': 'local-offer',
+  'cart.badge.plus': 'add-shopping-cart',
+  'bag': 'shopping-bag',
+  'bag.fill': 'shopping-bag',
+  'creditcard': 'credit-card',
+  'creditcard.fill': 'credit-card',
+  'dollarsign.circle': 'attach-money',
+  'dollarsign.circle.fill': 'attach-money',
+  'chart.bar': 'bar-chart',
+  'chart.line.uptrend.xyaxis': 'trending-up',
+  'chart.line.downtrend.xyaxis': 'trending-down',
+  'doc.text': 'description',
+  'doc.text.fill': 'description',
+  'doc.append': 'note-add',
+  'folder': 'folder',
+  'folder.fill': 'folder',
+  'tray': 'inbox',
+  'tray.fill': 'inbox',
+  'paperplane': 'send',
+  'paperplane.fill': 'send',
+  'photo': 'photo',
+  'photo.fill': 'photo',
+  'camera': 'camera-alt',
+  'camera.fill': 'camera-alt',
+  'video': 'videocam',
+  'video.fill': 'videocam',
+  'mic': 'mic',
+  'mic.fill': 'mic',
+  'speaker.wave.2': 'volume-up',
+  'speaker.wave.2.fill': 'volume-up',
+  'phone': 'phone',
+  'phone.fill': 'phone',
+  'message': 'message',
+  'message.fill': 'message',
+  'bubble.left': 'chat-bubble-outline',
+  'bubble.left.fill': 'chat-bubble',
+  'wifi': 'wifi',
+  'wifi.slash': 'wifi-off',
+  'lock': 'lock',
+  'lock.fill': 'lock',
+  'lock.open': 'lock-open',
+  'lock.open.fill': 'lock-open',
+  'key': 'key',
+  'key.fill': 'key',
+  'shield': 'shield',
+  'shield.fill': 'shield',
+  'flag': 'flag',
+  'flag.fill': 'flag',
+  'pin': 'push-pin',
+  'pin.fill': 'push-pin',
+  'link': 'link',
+  'link.badge.plus': 'add-link',
+  'eye': 'visibility',
+  'eye.fill': 'visibility',
+  'eye.slash': 'visibility-off',
+  'eye.slash.fill': 'visibility-off',
+  'hand.thumbsup': 'thumb-up-alt',
+  'hand.thumbsup.fill': 'thumb-up-alt',
+  'hand.thumbsdown': 'thumb-down-alt',
+  'hand.thumbsdown.fill': 'thumb-down-alt',
+  'arrow.clockwise': 'refresh',
+  'arrow.counterclockwise': 'replay',
+  'arrow.triangle.2.circlepath': 'sync',
+  'arrow.up.arrow.down': 'swap-vert',
+  'arrow.left.arrow.right': 'swap-horiz',
+  'arrow.up.right.square': 'open-in-new',
+  'arrow.up.right.square.fill': 'open-in-new',
+  'arrow.down.circle': 'download',
+  'arrow.down.circle.fill': 'download',
+  'arrow.up.circle': 'upload',
+  'arrow.up.circle.fill': 'upload',
+  'rectangle.portrait.and.arrow.right': 'logout',
+  'rectangle.portrait.and.arrow.forward': 'login',
+  'iphone': 'smartphone',
+  'iphone.radiowaves.left.and.right': 'vibration',
+  'desktopcomputer': 'desktop-windows',
+  'laptopcomputer': 'laptop',
+  'printer': 'print',
+  'wand.and.stars': 'auto-fix-high',
+  'lightbulb': 'lightbulb',
+  'lightbulb.fill': 'lightbulb',
+  'bolt': 'flash-on',
+  'bolt.fill': 'flash-on',
+  'battery.100': 'battery-full',
+  'battery.25': 'battery-alert',
+  'gift': 'card-giftcard',
+  'gift.fill': 'card-giftcard',
+  'graduationcap': 'school',
+  'graduationcap.fill': 'school',
+  'book': 'book',
+  'book.fill': 'book',
+  'newspaper': 'newspaper',
+  'newspaper.fill': 'newspaper',
+  'stethoscope': 'medical-services',
+  'cross': 'add-box',
+  'cross.fill': 'add-box',
+  'pills': 'medication',
+  'pills.fill': 'medication',
+  'bandage': 'healing',
+  'bandage.fill': 'healing',
+  'bed.double': 'bed',
+  'bed.double.fill': 'bed',
+  'fork.knife': 'restaurant',
+  'cup.and.saucer': 'coffee',
+  'cup.and.saucer.fill': 'coffee',
+  'wineglass': 'wine-bar',
+  'wineglass.fill': 'wine-bar',
+  'bicycle': 'pedal-bike',
+  'bicycle.circle': 'pedal-bike',
+  'car': 'directions-car',
+  'car.fill': 'directions-car',
+  'bus': 'directions-bus',
+  'bus.fill': 'directions-bus',
+  'airplane': 'flight',
+  'airplane.circle': 'flight',
+  'pawprint': 'pets',
+  'pawprint.fill': 'pets',
+  'leaf.arrow.triangle.circlepath': 'compost',
+  'trash.circle': 'delete-forever',
+  'trash.circle.fill': 'delete-forever',
+  'chevron.left.forwardslash.chevron.right': 'code',
+
+  // Réseaux sociaux et communication
+  'facebook': 'thumb-up',
+  'twitter': 'chat',
+  'instagram': 'photo-camera',
+  'youtube': 'smart-display',
+  'linkedin': 'work',
+  'globe': 'public',
+  'checkmark.circle.fill': 'check-circle',
 } as IconMapping;
 
 /**
- * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.
- * This ensures a consistent look across platforms, and optimal resource usage.
- * Icon `name`s are based on SF Symbols and require manual mapping to Material Icons.
+ * Composant d'icône qui utilise Material Icons sur toutes les plateformes.
+ * Les noms d'icônes sont basés sur SF Symbols pour la cohérence et sont mappés vers Material Icons.
  */
 export function IconSymbol({
   name,
@@ -35,7 +238,13 @@ export function IconSymbol({
   size?: number;
   color: string | OpaqueColorValue;
   style?: StyleProp<TextStyle>;
-  weight?: SymbolWeight;
 }) {
-  return <MaterialIcons color={color} size={size} name={MAPPING[name]} style={style} />;
+  return (
+    <MaterialIcons
+      name={MAPPING[name]}
+      size={size}
+      color={color}
+      style={style}
+    />
+  );
 }

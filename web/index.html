@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>AgriConnect - Votre compagnon agricole intelligent</title>
+  <meta name="description" content="AgriConnect est une application mobile conçue pour les agriculteurs, les éleveurs, les professionnels agricoles, les fournisseurs et les acheteurs.">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+    #root {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .loading-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      background: linear-gradient(135deg, #2E7D32, #60ad5e);
+      color: white;
+    }
+    .loading-logo {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+    .loading-text {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .loading-subtitle {
+      font-size: 18px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div class="loading-container">
+      <img src="/assets/images/logo.png" alt="AgriConnect Logo" class="loading-logo">
+      <div class="loading-text">AgriConnect</div>
+      <div class="loading-subtitle">Votre compagnon agricole intelligent</div>
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+  <script>
+    // Désactiver les avertissements LogBox
+    if (window.console) {
+      const originalConsoleError = console.error;
+      console.error = (...args) => {
+        // Liste des messages d'erreur à supprimer
+        const suppressedWarnings = [
+          // Avertissements d'accessibilité
+          'accessibilityLabel',
+          'accessibilityHint',
+          'accessibilityRole',
+          'accessible',
+          'accessibilityState',
+          'accessibilityValue',
+          'accessibilityActions',
+          'accessibilityLiveRegion',
+          'importantForAccessibility',
+          'aria-',
+          'role',
+          // Avertissements d'animation
+          'registerAnimation',
+          'Animated.timing(...).start with a function callback',
+          // Avertissements de style
+          'Unknown style property',
+          // Avertissements d'import.meta
+          'import.meta',
+          // Avertissements de useImperativeHandle
+          'useImperativeHandle',
+          // Autres avertissements courants
+          'Require cycle:',
+          'Non-serializable values were found in the navigation state',
+        ];
+
+        // Vérifie si l'erreur contient un des avertissements à supprimer
+        const shouldSuppress = suppressedWarnings.some(warning => {
+          return args[0] && typeof args[0] === 'string' && args[0].includes(warning);
+        });
+
+        // Si ce n'est pas un avertissement à supprimer, affiche l'erreur normalement
+        if (!shouldSuppress) {
+          originalConsoleError(...args);
+        }
+      };
+    }
+  </script>
+</body>
+</html>
